@@ -39,7 +39,7 @@ class Ugovor
 
     public static function update($id, $potpisano, $datumPotpisa, $pasId, $udomiteljId, mysqli $conn)
     {
-        $q = "UPDATE ugovori set potpisano = '$potpisano', datum_potpisa = '$datumPotpisa', pas_id ='$pasId', udomitelj_id = '$udomiteljId' where id = $id";
+        $q = "UPDATE ugovori set potpisano = '$potpisano', datum_potpisa = '$datumPotpisa', pas_id = '$pasId', udomitelj_id = '$udomiteljId' where id = $id";
         return $conn->query($q);
     }
 
@@ -50,6 +50,7 @@ class Ugovor
         if ($result = $conn->query($q)) {
 
             while ($row = $result->fetch_array(1)) {
+                $row['datum_potpisa'] = date('Y-M-d', strtotime($row['datum_potpisa']));
                 $myArray[] = $row;
             }
         }

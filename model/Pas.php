@@ -33,7 +33,7 @@ class Pas
 
     public static function add($ime, $godine, $boja, $tezina, mysqli $conn)
     {
-        $q = "INSERT INTO tim(ime, godine, boja, tezina) values('$ime', '$godine', '$boja', '$tezina')";
+        $q = "INSERT INTO psi(ime, godine, boja, tezina) values('$ime', '$godine', '$boja', '$tezina')";
         return $conn->query($q);
     }
 

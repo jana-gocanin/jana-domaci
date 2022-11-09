@@ -114,7 +114,7 @@ $ugovori = Ugovor::getAll($conn);
         <br>
     </div>
 
-    <div class="modal fade" id="modalPas" role="dialog">
+    <div class="modal fade" id="modalDodavanjePsa" role="dialog">
         <div class="modal-dialog">
 
             <!--Sadrzaj modala-->
@@ -124,7 +124,7 @@ $ugovori = Ugovor::getAll($conn);
                 </div>
                 <div class="modal-body">
                     <div class="container tim-form">
-                        <form action="#" method="post" id="dodajForm">
+                        <form method="post" id="dodaj-form-pas">
                             <h3 id="naslov" style="color: black" text-align="center">Dodavanje psa</h3>
                             <div class="row">
                                 <div class="col-md-6">
@@ -141,11 +141,11 @@ $ugovori = Ugovor::getAll($conn);
                                                class="form-control" placeholder="Boja *" value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="string" style="border: 1px solid black" name="tezina"
+                                        <input type="text" style="border: 1px solid black" name="tezina"
                                                class="form-control" placeholder="Tezina *" value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <button id="btnDodaj" type="submit" class="btn btn-success btn-block"
+                                        <button id="btn-dodaj-psa" type="submit" class="btn btn-success btn-block"
                                                 style="background-color: orange; border: 1px solid black;"><i
                                                     class="glyphicon glyphicon-plus"></i> Dodaj
                                         </button>
@@ -168,7 +168,7 @@ $ugovori = Ugovor::getAll($conn);
 
         </div>
     </div>
-    <div class="modal fade" id="modalUdomitelj" role="dialog">
+    <div class="modal fade" id="modalDodavanjeUdomitelja" role="dialog">
         <div class="modal-dialog">
 
             <!--Sadrzaj modala-->
@@ -178,7 +178,7 @@ $ugovori = Ugovor::getAll($conn);
                 </div>
                 <div class="modal-body">
                     <div class="container tim-form">
-                        <form action="#" method="post" id="dodajForm">
+                        <form action="#" method="post" id="dodaj-form-udomitelj">
                             <h3 id="naslov" style="color: black" text-align="center">Dodavanje udomitelja</h3>
                             <div class="row">
                                 <div class="col-md-6">
@@ -222,7 +222,7 @@ $ugovori = Ugovor::getAll($conn);
 
         </div>
     </div>
-    <div class="modal fade" id="modalUgovor" role="dialog">
+    <div class="modal fade" id="modalDodavanjeUgovora" role="dialog">
         <div class="modal-dialog">
 
             <!--Sadrzaj modala-->
@@ -232,13 +232,13 @@ $ugovori = Ugovor::getAll($conn);
                 </div>
                 <div class="modal-body">
                     <div class="container tim-form">
-                        <form action="#" method="post" id="dodajForm">
+                        <form action="#" method="post" id="dodaj-form-ugovor">
                             <h3 id="naslov" style="color: black" text-align="center">Dodavanje ugovora</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="radio" style="border: 1px solid black" name="potpisano"
-                                               class="form-control" placeholder="Potpisano *" value=""/>
+                                        <input type="checkbox" style="border: 1px solid black" name="potpisano"
+                                               class="form-control" placeholder="Potpisano *" value="1" checked/>
                                     </div>
                                     <div class="form-group">
                                         <input type="date" style="border: 1px solid black" name="datum_potpisa"
@@ -286,8 +286,8 @@ $ugovori = Ugovor::getAll($conn);
                 </div>
                 <div class="modal-body">
                     <div class="container tim-form">
-                        <form action="#" method="post" id="izmeniForm">
-                            <h3 style="color: black">Izmena tima</h3>
+                        <form action="#" method="post" id="izmeni-form-ugovor">
+                            <h3 style="color: black">Izmena ugovora</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -295,8 +295,8 @@ $ugovori = Ugovor::getAll($conn);
                                                placeholder="Id ugovora *" value="" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <input id="ugovor-potpisano" type="radio" name="potpisano" class="form-control"
-                                               placeholder="Potpisano *" value=""/>
+                                        <input id="ugovor-potpisano" type="checkbox" name="potpisano" class="form-control"
+                                               placeholder="Potpisano *" value="1" checked/>
                                     </div>
                                     <div class="form-group">
                                         <input id="ugovor-datum" type="date" name="datum_potpisa" class="form-control"

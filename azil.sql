@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2022 at 10:06 PM
+-- Generation Time: Nov 14, 2022 at 12:05 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -42,7 +42,8 @@ CREATE TABLE `psi` (
 
 INSERT INTO `psi` (`id`, `ime`, `godine`, `boja`, `tezina`) VALUES
 (1, 'Kiki', 2.5, 'crna', 5),
-(2, 'Bella', 6, 'crno-bela', 24);
+(2, 'Bella', 6, 'crno-bela', 24),
+(3, 'Bleki', 5, 'Bela', 20);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,8 @@ CREATE TABLE `udomitelji` (
 
 INSERT INTO `udomitelji` (`id`, `ime`, `prezime`, `datum_rodjenja`, `email`) VALUES
 (1, 'Milan', 'Milanovic', '2022-04-04', 'milan@gmail.com'),
-(2, 'Lena', 'Bogdanovic', '2021-12-20', 'lena@gmail.com');
+(2, 'Lena', 'Bogdanovic', '2021-12-20', 'lena@gmail.com'),
+(3, 'Sara', 'Nikolic', '1997-02-11', 'saranik@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -86,6 +88,25 @@ CREATE TABLE `ugovori` (
 
 INSERT INTO `ugovori` (`id`, `potpisano`, `datum_potpisa`, `pas_id`, `udomitelj_id`) VALUES
 (1, 1, '2022-11-06 21:04:49', 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `password`) VALUES
+(1, 'jana', 'jana');
 
 --
 -- Indexes for dumped tables
@@ -110,6 +131,12 @@ ALTER TABLE `ugovori`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -117,18 +144,24 @@ ALTER TABLE `ugovori`
 -- AUTO_INCREMENT for table `psi`
 --
 ALTER TABLE `psi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `udomitelji`
 --
 ALTER TABLE `udomitelji`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ugovori`
 --
 ALTER TABLE `ugovori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 

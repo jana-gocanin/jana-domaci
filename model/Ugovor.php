@@ -21,7 +21,9 @@ class Ugovor
 
     public static function getAll($conn)
     {
-        $query = "SELECT * FROM ugovori";
+        $query = "SELECT u.id, u.pas_id, u.udomitelj_id, u.potpisano, u.datum_potpisa, p.ime as ime_psa, ud.ime as ime_udomitelja FROM ugovori AS u
+                    LEFT JOIN psi AS p ON u.pas_id = p.id
+                    LEFT JOIN udomitelji AS ud ON u.udomitelj_id = ud.id";
         return $conn->query($query);
     }
 
@@ -45,7 +47,9 @@ class Ugovor
 
     public static function getById($id, mysqli $conn)
     {
-        $q = "SELECT * FROM ugovori WHERE id = $id";
+        $q = "SELECT u.id, u.pas_id, u.udomitelj_id, u.potpisano, u.datum_potpisa, p.ime as ime_psa, ud.ime as ime_udomitelja FROM ugovori AS u
+                    LEFT JOIN psi AS p ON u.pas_id = p.id
+                    LEFT JOIN udomitelji AS ud ON u.udomitelj_id = ud.id WHERE u.id = $id";
         $myArray = array();
         if ($result = $conn->query($q)) {
 
@@ -57,4 +61,25 @@ class Ugovor
         return $myArray;
     }
 
+    public static function getByPasId($id, mysqli $conn)
+    {
+        $q = "SELECT pas_id FROM ugovori WHERE id = $id";
+        $myArray = array();
+        if ($result = $conn->query($q)) {
+
+            while ($row = $result->fetch_array(1)) {
+                $row['datum_potpisa'] = date('Y-M-d', strtotime($row['datum_potpisa']));
+                $myArray[] = $row;
+            }
+        }
+        return $myArray;
+    }
+
+    public static function getLast(mysqli $conn)
+    {
+        $q = "SELECT u.id, u.pas_id, u.udomitelj_id, u.potpisano, u.datum_potpisa, p.ime as ime_psa, ud.ime as ime_udomitelja FROM ugovori AS u
+                    LEFT JOIN psi AS p ON u.pas_id = p.id
+                    LEFT JOIN udomitelji AS ud ON u.udomitelj_id = ud.id ORDER BY u.id DESC LIMIT 1";
+        return $conn->query($q);
+    }
 }

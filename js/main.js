@@ -124,9 +124,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#btn-izmeni-ugovor").click(function () {
+    $("#btn-izmeni-ugovor").click(function (e) {
         const checked = $("input[name=checked-donut]:checked");
-
         request = $.ajax({
             url: "handler/getUgovor.php",
             type: "post",
@@ -147,18 +146,40 @@ $(document).ready(function () {
             var dateSplit = response[0]["datum_potpisa"].split('-');
             $("#ugovor-datum").val(Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]));
             console.log(response[0]["datum_potpisa"].trim());
-
-            $("#ugovor-pas-id").val(response[0]["pas_id"].trim());
+            $("#ugovor-pas-id-" + response[0]["pas_id"]).attr("selected", "selected");
             console.log(response[0]["pas_id"].trim());
-            $("#ugovor-udomitelj-id").val(response[0]["udomitelj_id"].trim());
+            $("#ugovor-udomitelj-id-" + response[0]["udomitelj_id"]).attr("selected", "selected");
             console.log(response[0]["udomitelj_id"].trim());
 
             console.log(response);
         });
 
-        request.fail(function (jqXHR, textStatus, errorThrown) {
-            console.error("The following error occurred: " + textStatus, errorThrown);
+        request.fail(function () {
+            $('#modalIzmenaUgovora').modal('hide');
+            alert("Selectuj ugovor");
         });
+    });
+
+    $("#btn-izbrisi").click(function () {
+        const checked = $("input[name=checked-donut]:checked");
+
+        request = $.ajax({
+            url: "handler/deleteUgovor.php",
+            type: "post",
+            data: { id: checked.val() },
+        });
+
+        request.done(function (response, textStatus, jqXHR) {
+            if (response === "Success") {
+                checked.closest("tr").remove();
+                console.log("Ugovor je obrisan ");
+                alert("Ugovor je obrisan");
+            } else {
+                console.log("Ugovor nije obrisan " + response);
+                alert("Ugovor nije obrisan");
+            }
+        });
+
     });
 
     $("#izmeni-form-ugovor").submit(function () {
@@ -211,18 +232,17 @@ function appandRow(obj) {
     console.log(obj);
 
     $.get("handler/getLastElement.php", function (data) {
-        console.log(data);
-        console.log($("#tabela tbody tr:last").get());
+        data = JSON.parse(data);
         $("#tabela tbody").append(`
       <tr>
-          <td>${data}</td>
-          <td>${obj.nazivTima}</td>
-          <td>${obj.drzava}</td>
-          <td>${obj.godinaOsnivanja}</td>
-          <td>${obj.brojTitula}</td>
+          <td>${data.id}</td>
+          <td>${data.potpisano}</td>
+          <td>${data.datum_potpisa}</td>
+          <td>${data.ime_psa}[${data.pas_id}]</td>
+          <td>${data.ime_udomitelja}[${data.udomitelj_id}]</td>
           <td>
               <label class="custom-radio-btn">
-                  <input type="radio" name="checked-donut" value=${data}>
+                  <input type="radio" name="checked-donut" value=${data.id}>
                   <span class="checkmark"></span>
               </label>
           </td>

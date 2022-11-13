@@ -25,6 +25,13 @@ class Pas
         return $conn->query($query);
     }
 
+    public static function getAllUnadopted($conn)
+    {
+        $query = "SELECT * FROM psi AS p
+                    LEFT JOIN ugovori AS ug ON ug.pas_id = p.id WHERE ug.id IS NULL";
+        return $conn->query($query);
+    }
+
     public static function deleteById($pasID, mysqli $conn)
     {
         $q = "DELETE FROM psi WHERE id=$pasID";

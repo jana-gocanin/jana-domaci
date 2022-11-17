@@ -158,8 +158,8 @@ $(document).ready(function () {
                 $("#ugovor-potpisano").val(0);
             }
             console.log(response[0]["potpisano"]);
-            var dateSplit = response[0]["datum_potpisa"].split('-');
-            $("#ugovor-datum").val(Date(dateSplit[2], dateSplit[1] - 1, dateSplit[0]));
+            var dateSplit = response[0]["datum_potpisa"].split('/');
+            $("#ugovor-datum").val(Date(dateSplit[0], dateSplit[1] - 1, dateSplit[2]));
             console.log(response[0]["datum_potpisa"].trim());
             $("#ugovor-pas-id-" + response[0]["pas_id"]).attr("selected", "selected");
             console.log(response[0]["pas_id"].trim());
@@ -220,6 +220,7 @@ $(document).ready(function () {
         request.done(function (response, textStatus, jqXHR) {
             if (response === "Success") {
                 console.log("Ugovor je izmenjen");
+                $inputs.prop("disabled", false);
                 updateRow(obj);
             } else console.log("Ugovor nije izmenjen " + response);
             console.log(response);
@@ -237,8 +238,10 @@ function updateRow(obj) {
     console.log($(`#tabela tbody #tr-${obj.id} td`).get());
     let tds = $(`#tabela tbody #tr-${obj.id} td`).get();
 
+    var dateSplit = obj.datum_potpisa.split('-');
+    
     tds[1].textContent = obj.potpisano;
-    tds[2].textContent = obj.datum_potpisa;
+    tds[2].textContent = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
     tds[3].textContent = obj.pas_id;
     tds[4].textContent = obj.udomitelj_id;
 }

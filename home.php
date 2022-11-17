@@ -129,7 +129,7 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
         </div>
     </div>
 
-    <div class="col-md-4" style="display: block; background-color: rgba(255, 255, 255, 0.4);">
+    <div class="col-md-4" style="display: block; background-color: rgba(255, 255, 255, 0.4); top:-150px">
         <div style="text-align:center;">
             <h3>Pregled ugovora</h3>
             <button id="btn" class="btn btn-default" onclick="prikaziUgovore()"><img src="image/view.png"
@@ -147,7 +147,7 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
         <div style="text-align:center;">
             <h3>Pretraga ugovora</h3>
 
-            <input type="text" id="myInput" class="btn" placeholder="Pretrazi ugovor id" onkeyup="pretrazi()">
+            <input type="text" id="myInput" class="btn" placeholder="Pretrazi ugovor" onkeyup="pretrazi()">
 
         </div>
         <div style="text-align:center; ">

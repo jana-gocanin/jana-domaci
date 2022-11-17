@@ -54,7 +54,7 @@ class Ugovor
         if ($result = $conn->query($q)) {
 
             while ($row = $result->fetch_array(1)) {
-                $row['datum_potpisa'] = date('Y-m-d', strtotime($row['datum_potpisa']));
+                $row['datum_potpisa'] = date('m/d/Y', strtotime($row['datum_potpisa']));
                 $myArray[] = $row;
             }
         }

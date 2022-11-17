@@ -17,7 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         header('Location: home.php');
         exit();
     } else {
-        //promeni
+        
         echo '<script type="text/javascript">alert("Pogresni podaci za login");
                     window.location.href = "http://localhost/phpmyadmin/";</script>';
         exit();
@@ -42,7 +42,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <form method="POST" action="#">
             <h1>Azil</h1>
             <div class="imgcontainer">
-                <img src="image/back.jpg">
+                <img  id = "slicica" src="image/pas.png" style = "width: 50%">
             </div>
             <div class="container">
                 <input type="text" placeholder="Username" name="username" class="form-control" required>

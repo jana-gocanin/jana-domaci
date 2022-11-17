@@ -54,7 +54,7 @@ class Ugovor
         if ($result = $conn->query($q)) {
 
             while ($row = $result->fetch_array(1)) {
-                $row['datum_potpisa'] = date('Y-M-d', strtotime($row['datum_potpisa']));
+                $row['datum_potpisa'] = date('Y-m-d', strtotime($row['datum_potpisa']));
                 $myArray[] = $row;
             }
         }
@@ -63,12 +63,12 @@ class Ugovor
 
     public static function getByPasId($id, mysqli $conn)
     {
-        $q = "SELECT pas_id FROM ugovori WHERE id = $id";
+        $q = "SELECT * FROM ugovori WHERE pas_id = $id";
         $myArray = array();
         if ($result = $conn->query($q)) {
 
             while ($row = $result->fetch_array(1)) {
-                $row['datum_potpisa'] = date('Y-M-d', strtotime($row['datum_potpisa']));
+                $row['datum_potpisa'] = date('Y-m-d', strtotime($row['datum_potpisa']));
                 $myArray[] = $row;
             }
         }

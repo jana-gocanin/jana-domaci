@@ -22,6 +22,7 @@ if (
 
     $postojeciUgovor = Ugovor::getByPasId($_POST['pas_id'], $conn);
 
+
     if (!empty($postojeciUgovor)) {
         echo 'Pas je vec udomljen!';
         die;

@@ -27,7 +27,7 @@ class Pas
 
     public static function getAllUnadopted($conn)
     {
-        $query = "SELECT * FROM psi AS p
+        $query = "SELECT p.id, p.ime FROM psi AS p
                     LEFT JOIN ugovori AS ug ON ug.pas_id = p.id WHERE ug.id IS NULL";
         return $conn->query($query);
     }

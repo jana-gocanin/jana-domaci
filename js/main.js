@@ -1,5 +1,15 @@
 function prikaziUgovore() {
-    var x = document.getElementById("pregled");
+    var x = document.getElementById("pregled_ugovora");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function prikaziPse() {
+    var x = document.getElementById("pregled_pasa");
+    var y = document.getElementById("pregled_ugovora");
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
@@ -29,7 +39,6 @@ $("#btn-izmeni-ugovor").submit(function () {
 $(document).ready(function () {
     $("#dodaj-form-pas").submit(function () {
         event.preventDefault();
-
         const $form = $(this);
         const $inputs = $form.find("input, select, button");
         const serializedData = $form.serialize();
@@ -50,6 +59,8 @@ $(document).ready(function () {
         request.done(function (response, textStatus, jqXHR) {
             if (response === "Success") {
                 alert("Pas je dodat");
+                $inputs.prop("disabled", false);
+                $("#dodaj-form-pas").get(0).reset();
             } else console.log("Pas nije dodat " + response);
             console.log(response);
         });
@@ -81,6 +92,8 @@ $(document).ready(function () {
 
         request.done(function (response, textStatus, jqXHR) {
             if (response === "Success") {
+                $inputs.prop("disabled", false);
+                $("#dodaj-form-udomitelj").get(0).reset();
                 alert("Udomitelj je dodat");
             } else console.log("Udomitelj nije dodat " + response);
             console.log(response);
@@ -92,8 +105,8 @@ $(document).ready(function () {
     });
 
     $("#dodaj-form-ugovor").submit(function () {
-        event.preventDefault();
 
+        event.preventDefault();
         const $form = $(this);
         const $inputs = $form.find("input, select, button");
         const serializedData = $form.serialize();
@@ -113,6 +126,8 @@ $(document).ready(function () {
 
         request.done(function (response, textStatus, jqXHR) {
             if (response === "Success") {
+                $inputs.prop("disabled", false);
+                $("#dodaj-form-ugovor").get(0).reset();
                 alert("Ugovor je dodat");
                 appandRow(obj);
             } else console.log("Ugovor nije dodat " + response);

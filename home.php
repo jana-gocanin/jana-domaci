@@ -5,10 +5,12 @@ require "model/Ugovor.php";
 require "model/Pas.php";
 require "model/Udomitelj.php";
 
+
 $ugovori = Ugovor::getAll($conn);
 $psi = Pas::getAll($conn);
 $udomitelji = Udomitelj::getAll($conn);
 $neudomljeniPsi = Pas::getAllUnadopted($conn);
+
 
 
 $ugoviriArray = [];
@@ -53,11 +55,11 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
 
 <div class="jumbotron text-center" style=" background-color: rgba(255, 182, 193, 0);">
     <div class="container">
-        <h1 style="color:darkred">Azil</h1>
+        <h1 style="color:darkolivegreen">Azil</h1>
     </div>
 
     <div class="col-md-8" style="text-align:center; width:66.6%;float:left">
-        <div id="pregled">
+        <div id="pregled_ugovora">
             <table id="tabela" class="table sortable table-bordered table-hover ">
                 <thead>
                 <tr>
@@ -95,10 +97,49 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
         </div>
     </div>
 
+    <div class="col-md-8" style="text-align:center; width:66.6%;float:left">
+        <div id="pregled_pasa">
+            <table id="tabela" class="table sortable table-bordered table-hover ">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ime</th>
+                    <th scope="col">Godine</th>
+                    <th scope="col">Boja</th>
+                    <th scope="col">Tezina</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($psiArray as $pas) {
+                    ?>
+                    <tr id="tr-pas-<?php echo $pas["id"] ?>">
+                        <td><?php echo $pas["id"] ?></td>
+                        <td><?php echo $pas["ime"] ?></td>
+                        <td><?php echo $pas["godine"] ?></td>
+                        <td><?php echo $pas["boja"] ?></td>
+                        <td><?php echo $pas["tezina"] ?></td>
+
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="col-md-4" style="display: block; background-color: rgba(255, 255, 255, 0.4);">
         <div style="text-align:center;">
             <h3>Pregled ugovora</h3>
             <button id="btn" class="btn btn-default" onclick="prikaziUgovore()"><img src="image/view.png"
+                                                                                     style="width: 25px;height: 25px;">
+            </button>
+        </div>
+
+        <div style="text-align:center;">
+            <h3>Pregled pasa</h3>
+            <button id="btn" class="btn btn-default" onclick="prikaziPse()"><img src="image/view.png"
                                                                                      style="width: 25px;height: 25px;">
             </button>
         </div>
@@ -280,7 +321,7 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
                                             <?php
                                                 }
                                             } else {
-                                               ?>
+                                            ?>
                                                 <option value="null">Nema psa</option>
                                             <?php
                                             }

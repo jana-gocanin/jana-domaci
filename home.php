@@ -53,13 +53,16 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
 </head>
 <body>
 
+
+
 <div class="jumbotron text-center" style=" background-color: rgba(255, 182, 193, 0);">
-    <div class="container">
-        <h1 style="color:darkolivegreen">Azil</h1>
-    </div>
+    
 
     <div class="col-md-8" style="text-align:center; width:66.6%;float:left">
         <div id="pregled_ugovora">
+        <div class="container">
+        <h1 style="color:darkolivegreen">Udomi ljubimca!</h1>
+    </div>
             <table id="tabela" class="table sortable table-bordered table-hover ">
                 <thead>
                 <tr>
@@ -99,7 +102,10 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
 
     <div class="col-md-8" style="text-align:center; width:66.6%;float:left">
         <div id="pregled_pasa">
-            <table id="tabela" class="table sortable table-bordered table-hover ">
+        <div class="container">
+        <h1 style="color:darkolivegreen">Psi koji čekaju dom</h1>
+    </div>
+            <table id="tabelaPasa" class="table sortable table-bordered table-hover ">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -128,6 +134,9 @@ while ($row4 = $neudomljeniPsi->fetch_array()) {
             </table>
         </div>
     </div>
+
+    
+    
 
     <div class="col-md-4" style="display: block; background-color: rgba(255, 255, 255, 0.4); top:-150px">
         <div style="text-align:center;">

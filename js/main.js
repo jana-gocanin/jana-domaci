@@ -59,6 +59,7 @@ $(document).ready(function () {
         request.done(function (response, textStatus, jqXHR) {
             if (response === "Success") {
                 alert("Pas je dodat");
+                appandRowPas(obj);
                 $inputs.prop("disabled", false);
                 $("#dodaj-form-pas").get(0).reset();
             } else console.log("Pas nije dodat " + response);
@@ -264,6 +265,24 @@ function appandRow(obj) {
                   <span class="checkmark"></span>
               </label>
           </td>
+      </tr>
+    `);
+    });
+}
+
+function appandRowPas(obj) {
+    console.log(obj);
+
+    $.get("handler/getLastPas.php", function (data) {
+        data = JSON.parse(data);
+        $("#tabelaPasa tbody").append(`
+      <tr>
+          <td>${data.id}</td>
+          <td>${data.ime}</td>
+          <td>${data.godine}</td>
+          <td>${data.boja}</td>
+          <td>${data.tezina}</td>
+    
       </tr>
     `);
     });

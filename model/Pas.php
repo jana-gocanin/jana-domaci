@@ -63,5 +63,10 @@ class Pas
         return $myArray;
     }
 
+    public static function getLast(mysqli $conn)
+    {
+        $q = "SELECT * FROM psi ORDER BY id DESC LIMIT 1";
+        return $conn->query($q);
+    }
 
 }
